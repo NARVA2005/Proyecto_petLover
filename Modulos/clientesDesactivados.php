@@ -1,14 +1,12 @@
+
 <?php
 
-require_once './Clases/MySQL.php';
 
+require_once './Clases/MySQL.php';
 $mysql = new MYSQL();
 $mysql->conectar();
-$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.mascota where estado='activo'");
+$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.cliente where estado='inactivo'");
 $mysql->desconectar();
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -48,105 +46,40 @@ $mysql->desconectar();
 </head>
 
 <body>
-<style>
-    body {
-      background-color: #F4EBE8;
-      font-family: 'Rounded Mplus 1c', sans-serif;
-      background-image: radial-gradient(circle at 100% 150%, #F4EBE8 24%, #EAC4D5 25%, #EAC4D5 28%, #F4EBE8 29%, #F4EBE8 36%, #EAC4D5 36%, #EAC4D5 40%, transparent 40%, transparent),
-                        radial-gradient(circle at 0    150%, #F4EBE8 24%, #EAC4D5 25%, #EAC4D5 28%, #F4EBE8 29%, #F4EBE8 36%, #EAC4D5 36%, #EAC4D5 40%, transparent 40%, transparent),
-                        radial-gradient(circle at 50%  100%, #EAC4D5 10%, transparent 10%),
-                        radial-gradient(circle at 100% 50%, transparent 20%, #F4EBE8 20%, #F4EBE8 26%, transparent 26%), transparent;
-      background-size: 30px 30px;
-    }
-
-    .form-register {
-      background-color: #FFF;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .form-register h4 {
-      color: #7D6E83;
-      font-size: 28px;
-      margin-bottom: 30px;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .controls {
-      margin-bottom: 20px;
-      width: 100%;
-      padding: 10px;
-      border-radius: 10px;
-      border: 2px solid #EAC4D5;
-      box-sizing: border-box;
-      font-size: 16px;
-      color: #7D6E83;
-    }
-
-    .botons {
-      width: 100%;
-      padding: 10px;
-      border-radius: 10px;
-      border: none;
-      background-color: #7D6E83;
-      color: #FFF;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
-    }
-
-    .botons:hover {
-      background-color: #A7A1AC;
-    }
-
-    .terms {
-      font-size: 16px;
-      color: #7D6E83;
-      margin-top: 20px;
-    }
-
-    a {
-      color: #7D6E83;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    a:hover {
-      color: #A7A1AC;
-      text-decoration: underline;
-    }
-
-    .paw-print {
-      font-size: 30px;
-      color: #EAC4D5;
-      margin-bottom: 10px;
-    }
-  
-    /* Estilos para el contenedor del mensaje de error */
-    .error-message {
-      background-color: #ffcccc;
-      border: 1px solid #ff0000;
-      color: #ff0000;
-      padding: 10px;
-      margin-bottom: 20px;
-      border-radius: 5px;
-    }
- 
-  </style>
 <?php
 // Verificar si hay un mensaje en la sesión y mostrarlo si existe
 if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
-  echo '<div class="error-message ' . $_SESSION['tipo'] . '">' . $_SESSION['mensaje'] . '</div>';
-  // Limpiar el mensaje de la sesión para evitar que se muestre en futuras visitas a la página
+    echo '<div class="mensaje ' . $_SESSION['tipo'] . '">' . $_SESSION['mensaje'] . '</div>';
+    // Limpiar el mensaje de la sesión para evitar que se muestre en futuras visitas a la página
     unset($_SESSION['mensaje']);
 }
 ?>
 
-   
+    <style>
+    .mensaje {
+    position: fixed; /* Fija el mensaje en la pantalla */
+    top: 50px; /* Distancia desde la parte superior */
+    left: 50%; /* Coloca el mensaje en el centro horizontal */
+    transform: translateX(-50%); /* Centra horizontalmente */
+    z-index: 1000; /* Asegura que el mensaje esté por encima de otros elementos */
+    padding: 10px;
+    background-color: #f8d7da; /* Color de fondo rojo claro */
+    border: 1px solid #f5c6cb; /* Borde rojo */
+    color: #721c24; /* Texto rojo oscuro */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 300px; /* Ancho del mensaje */
+    text-align: center; /* Texto centrado */
+    font-size: 16px; /* Tamaño de fuente */
+}
+    </style>
+    <script>
+    // Función para ocultar el mensaje después de un tiempo determinado
+    setTimeout(function() {
+        $('.mensaje').fadeOut('slow'); // Oculta el mensaje con una animación de desvanecimiento
+    }, 5000); // Cambia este valor (en milisegundos) para ajustar la duración del mensaje antes de que se desvanezca
+</script>
+<!-------------------------------------------> 
+
         <div class="row py-3 px-lg-5">
             <div class="col-lg-4">
                 <a href="" class="navbar-brand d-none d-lg-block">
@@ -174,8 +107,8 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     <!-- Topbar End -->
 
 
-     <!-- Navbar Start -->
-     <div class="container-fluid p-0">
+      <!-- Navbar Start -->
+      <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
             <a href="" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Safety</span>First</h1>
@@ -221,12 +154,11 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     </div>
     <!-- Navbar End -->
 
-
     <!-- Blog Start -->
     <div class="container  pt-5 ">
         <div class="d-flex flex-column text-center mb-5 pt-5 ">
           
-            <h1 class="display-4 m-0"><span class="text-primary">PetLover</span>Mascotas</h1>
+            <h1 class="display-4 m-0"><span class="text-primary">PetLover</span>Clientes</h1>
         </div>
        
           <!-- Button trigger modal -->
@@ -241,13 +173,16 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
 
 <th>id</th>
 <th>Nombre</th>
-<th>Tipo</th>
-<th>Raza</th>
-<th>Nota</th>
-<th>Id Cliente</th>
+<th>Apellido</th>
+<th>Correo</th>
+<th>Contraseña</th>
+
 <th>Estado</th>
+
+
 <th></th>
-<th></th>
+
+
 </thead>
 
 
@@ -274,16 +209,9 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
                                                 <td>
                                                     <?php echo $fila[5]; ?>
                                                 </td>
+                                               
                                                 <td>
-                                                    <?php echo $fila[6]; ?>
-                                                </td>
-                                                <td>
-                                                   
-                                                <button type="button" class="btn btn-primary edit-product" data-id="<?php echo $fila[0]; ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">✎</button>
-                             
-                                                </td>
-                                                <td>
-                                                <a onclick="idMascotaEstado('<?php echo $fila[0] ?>')" class="btn btn-primary" href="#">🗑</a>
+                                                <a onclick="idClienteEstado('<?php echo $fila[0] ?>')" class="btn btn-primary" href="#">🗑</a>
                                             </tr>
 
                                         <?php
@@ -300,23 +228,28 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
 
 
 
- </div>
+</div>
+
+
+
+
+
 <script>
   $(document).ready(function() {
     $("#datatable").DataTable({
       lengthMenu: [5, 10, 15, 50, 100, 250, 500],
       columnDefs: [
-        { orderable: false, targets: [7, 8] },
-            { searchable: false, targets: [7, 8] },
+        { orderable: false, targets: [5, 6] },
+            { searchable: false, targets:[5, 6] },
       ],
       pageLength: 5,
       destroy: true,
       language: {
-        lengthMenu: "Mostrar _MENU_ mascotas por página",
-        zeroRecords: "Ningún mascota encontrado",
-        info: "Mostrando _START_ a _END_ mascotas de _TOTAL_ ",
+        lengthMenu: "Mostrar _MENU_ cliente por página",
+        zeroRecords: "Ningún cliente encontrado",
+        info: "Mostrando _START_ a _END_ clientes de _TOTAL_ ",
         infoEmpty: "Ningún mascota encontrado",
-        infoFiltered: "(filtrados desde _MAX_ mascotas totales)",
+        infoFiltered: "(filtrados desde _MAX_ clientes totales)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
         paginate: {
@@ -329,127 +262,8 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     });
   });
 </script>
-<div class="row d-flex justify-content-center">
-<div class="col-2">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregistro">
- Ingresar mascota
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar de mascota</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="editProductForm" action="./Controladores/llenarCamposEditarMascotas.php" method="POST">
-          <div class="mb-3">
-            <label for="idMascota" class="form-label">Id de la mascota</label>
-            <input type="number" class="form-control" id="idMascota" aria-describedby="emailHelp" name="idMascotas" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="tipo" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="nombre" >
-          </div>
-          <div class="mb-3">
-            <label for="tipo" class="form-label">Tipo</label>
-            <input type="text" class="form-control" id="type" aria-describedby="emailHelp" name="tipo" >
-          </div>
-          <div class="mb-3">
-            <label for="razas" class="form-label">Raza</label>
-            <input type="text" class="form-control" id="razas" aria-describedby="emailHelp" name="raza" >
-          </div>
-          <div class="mb-3">
-            <label for="nota" class="form-label">Nota</label>
-            <input type="text" class="form-control" id="nota" aria-describedby="emailHelp" name="nota" >
-          </div>
-          <div class="mb-3">
-            <label for="idClientes" class="form-label">Id cliente</label>
-            <input type="number" class="form-control" id="idCliente" aria-describedby="emailHelp" name="idCliente" readonly >
-          </div>
-    
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-      $(document).ready(function() {
-    $('.edit-product').click(function() {
-        var idcliente = $(this).data('id');
-        var nombre = $(this).closest('tr').find('td:eq(1)').text().trim(); // Obtiene el precio del producto de la cuarta celda de la fila
-        var idMascota = $(this).closest('tr').find('td:eq(0)').text().trim(); // Obtiene el nombre del producto de la segunda celda de la fila
-        var raza = $(this).closest('tr').find('td:eq(3)').text().trim();
-        var tipo = $(this).closest('tr').find('td:eq(2)').text().trim();  // Obtiene el stock del producto de la tercera celda de la fila
-        var nota = $(this).closest('tr').find('td:eq(4)').text().trim(); // Obtiene el precio del producto de la cuarta celda de la fila
-        
-        $('#idCliente').val(idcliente);
-        $('#type').val(tipo); 
-        $('#idMascota').val(idMascota); 
-        $('#nombre').val(nombre); 
-        $('#razas').val(raza); 
-        $('#nota').val(nota);  
-    });
-});
 
 
-    </script>
-
-
-
-
-
-<div class="col-2">
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalregistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar mascota</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form id="" action="./Controladores/registroaMascotaFuncionario.php" method="POST">
-        
-          <div class="mb-3">
-            <label for="idProducto" class="form-label">Nombre de la mascota</label>
-            <input type="Text" class="form-control" id="idCliente" aria-describedby="emailHelp" name="nombres">
-          </div>
-          <div class="mb-3">
-            <label for="nombreProducto" class="form-label">Tipo</label>
-            <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="tipo" >
-          </div>
-          <div class="mb-3">
-            <label for="nombreProducto" class="form-label">Raza</label>
-            <input type="text" class="form-control" id="apellido" aria-describedby="emailHelp" name="raza" >
-          </div>
-          <div class="mb-3">
-            <label for="stockProducto" class="form-label">Nota</label>
-            <input type="text" class="form-control" id="correo" aria-describedby="emailHelp" name="nota" >
-          </div>
-          <div class="mb-3">
-            <label for="precioProducto" class="form-label">Id cliente</label>
-            <input type="text" class="form-control" id="idcliente" aria-describedby="emailHelp" name="id_cliente" >
-          </div>
-    
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
 <script>
         $(document).ready(function() {
     $('.elim-producto').click(function() {
@@ -477,7 +291,7 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
         </div>
     </div>
     <script>
-const idMascotaEstado = (id) => {
+        function idClienteEstado(id) {
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: "btn btn-success",
@@ -489,21 +303,21 @@ const idMascotaEstado = (id) => {
     // Mostrar el cuadro de diálogo de confirmación
     swalWithBootstrapButtons.fire({
         title: "¿Estás seguro?",
-        text: "Esta acción cambiará el estado del producto.",
+        text: "Esta acción cambiará el estado del cliente.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sí, cambiar estado",
+        confirmButtonText: "Sí, activar",
         cancelButtonText: "Cancelar",
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
             // Enviar la solicitud POST al servidor PHP para cambiar el estado del producto
-            fetch('./Controladores/DesactivarMascota.php', {
+            fetch('./Controladores/DesactivarCliente.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'id=' + id,
+                body: 'identificacion=' + id,
             })
             .then(response => response.json())
             .then(data => {
@@ -511,7 +325,7 @@ const idMascotaEstado = (id) => {
                 if (data.success) {
                     swalWithBootstrapButtons.fire({
                         title: "Éxito",
-                        text: "El estado del producto se ha cambiado correctamente.",
+                        text: "El estado del cliente se ha cambiado correctamente.",
                         icon: "success"
                     }).then(() => {
                         // Recargar la página
@@ -520,7 +334,7 @@ const idMascotaEstado = (id) => {
                 } else {
                     swalWithBootstrapButtons.fire({
                         title: "Error",
-                        text: "Hubo un error al cambiar el estado del producto.",
+                        text: "Hubo un error al cambiar el estado del cliente.",
                         icon: "error"
                     });
                 }
@@ -536,8 +350,8 @@ const idMascotaEstado = (id) => {
         }
     });
 }
-</script>
-    <!-- Blog End -->
+    </script>
+  
 
 
       <!-- Footer Start -->
@@ -612,8 +426,10 @@ const idMascotaEstado = (id) => {
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-  <!-- Template Javascript -->
-  <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+    <!-- JavaScript Libraries -->
+   <!-- Template Javascript -->
+   <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>

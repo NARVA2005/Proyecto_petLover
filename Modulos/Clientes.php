@@ -5,7 +5,7 @@
 require_once './Clases/MySQL.php';
 $mysql = new MYSQL();
 $mysql->conectar();
-$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.cliente");
+$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.cliente where estado='activo'");
 $mysql->desconectar();
 ?>
 
@@ -41,6 +41,8 @@ $mysql->desconectar();
     <!-- Customized Bootstrap Stylesheet -->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
+
 </head>
 
 <body>
@@ -105,8 +107,8 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     <!-- Topbar End -->
 
 
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0">
+     <!-- Navbar Start -->
+     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
             <a href="" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Safety</span>First</h1>
@@ -116,19 +118,41 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
             </button>
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                   
-                         
-                    <a href="../Modulos/Empleados.php" class="nav-item nav-link">Productos</a>
-                    <a href="../Modulos/Clientes.php" class="nav-item nav-link">Clientes</a>
-                    <a href="../Modulos/mascotas.php" class="nav-item nav-link">Mascotas</a>
-                    <a href="productosDesactivados.php" class="nav-item nav-link">Productos Eliminados</a>
+                <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+           Productos
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/Empleados.php">Historial de productos</a></li>
+                <li><a class="dropdown-item" href="productosDesactivados.php">Prodcutos inactivos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+       Clientes
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/Clientes.php">Historial de Clientes</a></li>
+                <li><a class="dropdown-item" href="clientesDesactivados.php">Clientes inactivos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+     Mascotas
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/mascotas.php">Historial de mascotas</a></li>
+                <li><a class="dropdown-item" href="mascotasDesactivadas.php">mascotas inactivos</a></li>
+              </ul>
+            </li>
+            
+                 
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
             </div>
         </nav>
     </div>
     <!-- Navbar End -->
-
 
     <!-- Blog Start -->
     <div class="container  pt-5 ">
@@ -142,8 +166,8 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
 
 <div class="row d-flex justify-content-center">
 
-<div class="col-10">
-<table class="table"> 
+<div class="col-12">
+<table class="table" id="datatable"> 
 
 <thead class="text-center thead-dark">
 
@@ -152,17 +176,14 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
 <th>Apellido</th>
 <th>Correo</th>
 <th>Contraseña</th>
-
 <th>Estado</th>
-
-
 <th></th>
 <th></th>
 
 </thead>
-<tbody>
 
-<tbody>
+
+<tbody id="miTabla">
                                         <?php
                                         while ($fila = mysqli_fetch_array($consulta)) {
                                         ?>
@@ -214,7 +235,34 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
 
 
 
-
+<script>
+  $(document).ready(function() {
+    $("#datatable").DataTable({
+      lengthMenu: [5, 10, 15, 50, 100, 250, 500],
+      columnDefs: [
+        { orderable: false, targets: [6, 7] },
+            { searchable: false, targets: [6, 7] },
+      ],
+      pageLength: 5,
+      destroy: true,
+      language: {
+        lengthMenu: "Mostrar _MENU_ cliente por página",
+        zeroRecords: "Ningún cliente encontrado",
+        info: "Mostrando _START_ a _END_ clientes de _TOTAL_ ",
+        infoEmpty: "Ningún mascota encontrado",
+        infoFiltered: "(filtrados desde _MAX_ clientes totales)",
+        search: "Buscar:",
+        loadingRecords: "Cargando...",
+        paginate: {
+          first: "<<",
+          last: ">>",
+          next: ">",
+          previous: "<",
+        },
+      },
+    });
+  });
+</script>
 
 <div class="row d-flex justify-content-center">
 <div class="col-2">
@@ -374,10 +422,10 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     // Mostrar el cuadro de diálogo de confirmación
     swalWithBootstrapButtons.fire({
         title: "¿Estás seguro?",
-        text: "Esta acción cambiará el estado del producto.",
+        text: "Esta acción cambiará el estado del cliente.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sí, cambiar estado",
+        confirmButtonText: "Sí, Desactivar",
         cancelButtonText: "Cancelar",
         reverseButtons: true
     }).then((result) => {
@@ -396,7 +444,7 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
                 if (data.success) {
                     swalWithBootstrapButtons.fire({
                         title: "Éxito",
-                        text: "El estado del producto se ha cambiado correctamente.",
+                        text: "El estado del cliente se ha cambiado correctamente.",
                         icon: "success"
                     }).then(() => {
                         // Recargar la página
@@ -405,7 +453,7 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
                 } else {
                     swalWithBootstrapButtons.fire({
                         title: "Error",
-                        text: "Hubo un error al cambiar el estado del producto.",
+                        text: "Hubo un error al cambiar el estado del cliente.",
                         icon: "error"
                     });
                 }
@@ -530,22 +578,14 @@ btnI.addEventListener("click", (e) => {
     <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/lib/easing/easing.min.js"></script>
-    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../assets/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="../assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="../assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="../assets/mail/jqBootstrapValidation.min.js"></script>
-    <script src="../assets/mail/contact.js"></script>
+
 
     <!-- Template Javascript -->
     <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
 

@@ -1,3 +1,12 @@
+
+<?php
+require_once './Clases/MySQL.php';
+$mysql = new MYSQL();
+$mysql->conectar();
+$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.Producto where estado='activo'");
+$mysql->desconectar();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,46 +36,15 @@
     <!-- Customized Bootstrap Stylesheet -->
 
     <link href="css/style.css" rel="stylesheet">
-=======
+
     <link href="../assets/css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-    <!-- Topbar Start -->
-    <div class="container-fluid">
-        <div class="row bg-secondary py-2 px-lg-5">
-            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white pr-3" href="">FAQs</a>
-                    <span class="text-white">|</span>
-                    <a class="text-white px-3" href="">Help</a>
-                    <span class="text-white">|</span>
-                    <a class="text-white pl-3" href="">Support</a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-3" href="">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-white px-3" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-3" href="">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-white px-3" href="">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="text-white pl-3" href="">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row py-3 px-lg-5">
+ 
+<div class="row py-3 px-lg-5">
             <div class="col-lg-4">
                 <a href="" class="navbar-brand d-none d-lg-block">
                     <h1 class="m-0 display-5 text-capitalize"><span class="text-primary">Pet</span>Lover</h1>
@@ -105,14 +83,8 @@
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
 
-                    <a href="../hola.html" class="nav-item nav-link">Inicio</a>
+         
 
-                    <a href="../index.html" class="nav-item nav-link">Inicio</a>
-
-                 
-                  
-                    <a href="#" class="nav-item nav-link">Metodos de pago</a>
-                
                         
                     <a href="#" class="nav-item nav-link">Productos</a>
                      
@@ -120,13 +92,12 @@
                          
                    
 
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    <a href="contact.html" class="nav-item nav-link">Servicios</a>
+                 
 
             <a href="formularioServicios.php" class="nav-item nav-link">Servicios</a>
 
-                </div>
-                <a href="" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Comprar</a>
+            </div>
+                <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
             </div>
         </nav>
     </div>
@@ -135,70 +106,58 @@
 
     <!-- Blog Start -->
     <div class="container pt-5">
-        <div class="d-flex flex-column text-center mb-5 pt-5">
-            <h4 class="text-secondary mb-3">Blog de productos</h4>
-            <h1 class="display-4 m-0"><span class="text-primary">Compras</span>para tu mascota</h1>
+     <div class="text-center mb-5 pt-5">
+        <h4 class="text-secondary mb-3">Blog de productos</h4>
+        <h1 class="display-4 m-0"><span class="text-primary">Compras</span> para tu mascota</h1>
+     </div>
+     <div class="ag-format-container">
+        <div class="ag-courses_box">
+     <?php
+                                         
+                                         while ($fila = mysqli_fetch_array($consulta)) {
+                                        
+                                         ?>
+   
+      <div class="ag-courses_item">
+      <a href="#" class="ag-courses-item_link">
+        <div class="ag-courses-item_bg"></div>
+
+        <div class="ag-courses-item_title">
+         <img src=" <?php echo $fila[4]; ?>" alt="">
         </div>
+        <div class="ag-courses-item_date-box">
+  Descripcion
+          <span class="ag-courses-item_date">
+          <?php echo $fila[1]; ?>
+          </span>
+        </div>
+        <div class="ag-courses-item_date-box">
+ Precio por unidad
+          <span class="ag-courses-item_date">
+          <?php echo $fila[3]; ?>
+          </span>
+        </div>
+        <div class="ag-courses-item_date-box">
+       Cantidad disponible
+          <span class="ag-courses-item_date">
+          <?php echo $fila[2]; ?>
+          </span>
+        </div>
+        <div class="ag-courses-item_date-box card-footer text-center">
+        <a href="Registrarse.php" class="btn btn-primary btn-sm" style="border-radius: 20px; padding: 10px 20px;">Comprar</a>
 
-        <div class="row pb-3">
-            <div class="col-lg-4 mb-4">
-                <div class="card border-0 mb-2">
-                    <img class="card-img-top" src="data:image/jpeg;base64,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" alt="">
-                    <div class="card-body bg-light p-4">
-                        <h4 class="card-title text-truncate">Cepillo</h4>
-                        <div class="d-flex mb-3">
-                         
-                        <button id="menos" type="button">-</button>
-
-<input type="text" id="contador" class="form-control" value="1" min="1" />
-          
-<button id="mas" type="button">+</button>
-                        </div>
-                        <p>Para los perros con pelo duro, son recomendables las cardas o los cepillos de púas metálicas, con los que podrás eliminar la suciedad acumulada en el pelo del animal. En el caso de querer eliminar nudos, te aconsejamos utilizar un peine rastrillo, con el que conseguirás que el pelo muerto salga a la superficie.</p>
-                        <a class="font-weight-bold" href="">Agregar al carrito</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card border-0 mb-2">
-                    <img class="card-img-top" src="" alt="">
-                
-                    <div class="card-body bg-light p-4">
-                        <h4 class="card-title text-truncate">Jabon</h4>
-                        <div class="d-flex mb-3">
-                
-                        <button id="menos" type="button">-</button>
-
-<input type="text" id="contador" class="form-control" value="1" min="1" />
-          
-<button id="mas" type="button">+</button>
-                        </div>
-                        <p>Asuntol Jabón Antipulgas Perros por 100 g + Jabonera</p>
-                        <a class="font-weight-bold" href="">Agregar al carrito</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card border-0 mb-2">
-                    <img class="card-img-top" src="https://i5.walmartimages.com.mx/mg/gm/1p/images/product-images/img_large/00750107220505l.jpg" alt="">
-                    <div class="card-body bg-light p-4">
-                        <h4 class="card-title text-truncate">Croqueta para gato</h4>
-                        <div class="d-flex mb-3">
-
-                        <button id="menos" type="button">-</button>
-
-<input type="text" id="contador" class="form-control" value="1" min="1" />
-          
-<button id="mas" type="button">+</button>
-                        </div>
-                        <p>Croqueta para gato Purina Cat Chow Adulto todos los tamaños 15kg</p>
-                        <a class="font-weight-bold" href="">Agregar al carrito</a>
-                    </div>
+</div>
+      </a>
+      </div>
+      <?php
+                                        }
+                                        ?>
+ </div>
+    </div>
+</div>
+  
 
 
-                </div>
-            </div>
-           
             <div class="col-lg-12">
                 <nav aria-label="Page navigation">
                   <ul class="pagination justify-content-center mb-4">
@@ -219,8 +178,153 @@
                 </nav>
             </div>
         </div>
-    </div>
     <!-- Blog End -->
+    <style>
+  .ag-format-container {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+
+
+.ag-courses_box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+
+  padding: 20px 0;
+}
+.ag-courses_item {
+  -ms-flex-preferred-size: calc(33.33333% - 30px);
+  flex-basis: calc(33.33333% - 30px);
+
+  margin: 0 15px 30px;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+}
+.ag-courses-item_link {
+  display: block;
+  padding: 30px 20px;
+  background-color: #121212;
+
+  overflow: hidden;
+
+  position: relative;
+}
+.ag-courses-item_link:hover,
+.ag-courses-item_link:hover .ag-courses-item_date {
+  text-decoration: none;
+  color: #FFF;
+}
+.ag-courses-item_link:hover .ag-courses-item_bg {
+  -webkit-transform: scale(10);
+  -ms-transform: scale(10);
+  transform: scale(10);
+}
+.ag-courses-item_title {
+  min-height: 87px;
+  margin: 0 0 25px;
+
+  overflow: hidden;
+
+  font-weight: bold;
+  font-size: 30px;
+  color: #FFF;
+
+  z-index: 2;
+  position: relative;
+}
+.ag-courses-item_date-box {
+  font-size: 18px;
+  color: #FFF;
+
+  z-index: 2;
+  position: relative;
+}
+.ag-courses-item_date {
+  font-weight: bold;
+  color: #f9b234;
+
+  -webkit-transition: color .5s ease;
+  -o-transition: color .5s ease;
+  transition: color .5s ease
+}
+.ag-courses-item_bg {
+  height: 128px;
+  width: 128px;
+  background-color: #f9b234;
+
+  z-index: 1;
+  position: absolute;
+  top: -75px;
+  right: -75px;
+
+  border-radius: 50%;
+
+  -webkit-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.ag-courses_item:nth-child(2n) .ag-courses-item_bg {
+  background-color: #3ecd5e;
+}
+.ag-courses_item:nth-child(3n) .ag-courses-item_bg {
+  background-color: #e44002;
+}
+.ag-courses_item:nth-child(4n) .ag-courses-item_bg {
+  background-color: #952aff;
+}
+.ag-courses_item:nth-child(5n) .ag-courses-item_bg {
+  background-color: #cd3e94;
+}
+.ag-courses_item:nth-child(6n) .ag-courses-item_bg {
+  background-color: #4c49ea;
+}
+
+
+
+@media only screen and (max-width: 979px) {
+  .ag-courses_item {
+    -ms-flex-preferred-size: calc(50% - 30px);
+    flex-basis: calc(50% - 30px);
+  }
+  .ag-courses-item_title {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .ag-format-container {
+    width: 96%;
+  }
+
+}
+@media only screen and (max-width: 639px) {
+  .ag-courses_item {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+  .ag-courses-item_title {
+    min-height: 72px;
+    line-height: 1;
+
+    font-size: 24px;
+  }
+  .ag-courses-item_link {
+    padding: 22px 40px;
+  }
+  .ag-courses-item_date-box {
+    font-size: 16px;
+  }
+}
+</style>
 
 
       <!-- Footer Start -->

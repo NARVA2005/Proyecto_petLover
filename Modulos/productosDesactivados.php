@@ -44,43 +44,14 @@ $mysql->desconectar();
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="../assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/css.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
+
 </head>
 
 <body>
 
-    <!-- Topbar Start -->
-    <div class="container-fluid">
-        <div class="row bg-secondary py-2 px-lg-5">
-            <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white pr-3" href="">FAQs</a>
-                    <span class="text-white">|</span>
-                    <a class="text-white px-3" href="">Help</a>
-                    <span class="text-white">|</span>
-                    <a class="text-white pl-3" href="">Support</a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-3" href="">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-white px-3" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-3" href="">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-white px-3" href="">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="text-white pl-3" href="">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="row py-3 px-lg-5">
+   
+<div class="row py-3 px-lg-5">
             <div class="col-lg-4">
                 <a href="" class="navbar-brand d-none d-lg-block">
                     <h1 class="m-0 display-5 text-capitalize"><span class="text-primary">Pet</span>Lover</h1>
@@ -107,8 +78,8 @@ $mysql->desconectar();
     <!-- Topbar End -->
 
 
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0">
+      <!-- Navbar Start -->
+      <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
             <a href="" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Safety</span>First</h1>
@@ -118,23 +89,41 @@ $mysql->desconectar();
             </button>
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-                   
-                         
-                <a href="../Modulos/Empleados.php" class="nav-item nav-link">Productos</a>
-                    <a href="../Modulos/Clientes.php" class="nav-item nav-link">Clientes</a>
-                    <a href="../Modulos/mascotas.php" class="nav-item nav-link">Mascotas</a>
-                
-                    
-
-                   
-                    <a href="productosDesactivados.php" class="nav-item nav-link">Productos Eliminados</a>
+                <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+           Productos
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/Empleados.php">Historial de productos</a></li>
+                <li><a class="dropdown-item" href="productosDesactivados.php">Prodcutos inactivos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+       Clientes
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/Clientes.php">Historial de Clientes</a></li>
+                <li><a class="dropdown-item" href="clientesDesactivados.php">Clientes inactivos</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+     Mascotas
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/mascotas.php">Historial de mascotas</a></li>
+                <li><a class="dropdown-item" href="mascotasDesactivadas.php">mascotas inactivos</a></li>
+              </ul>
+            </li>
+            
+                 
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
             </div>
         </nav>
     </div>
     <!-- Navbar End -->
-
 
     <!-- Blog Start -->
     <div class="container  pt-5 ">
@@ -149,7 +138,7 @@ $mysql->desconectar();
 <div class="row d-flex justify-content-center">
 
 <div class="col-10">
-<table class="table"> 
+<table class="table" id="datatable"> 
 
 <thead class="text-center thead-dark">
 
@@ -164,9 +153,9 @@ $mysql->desconectar();
 
 
 </thead>
-<tbody>
 
-<tbody>
+
+<tbody id="miTabla">
                                         <?php
                                         while ($fila = mysqli_fetch_array($consulta)) {
                                         ?>
@@ -233,6 +222,34 @@ $mysql->desconectar();
 
 
 </div>
+<script>
+  $(document).ready(function() {
+    $("#datatable").DataTable({
+      lengthMenu: [5, 10, 15, 50, 100, 250, 500],
+      columnDefs: [
+        { orderable: false, targets: [5, 6] },
+            { searchable: false, targets:[5, 6] },
+      ],
+      pageLength: 5,
+      destroy: true,
+      language: {
+        lengthMenu: "Mostrar _MENU_ Producto por página",
+        zeroRecords: "Ningún Producto encontrado",
+        info: "Mostrando _START_ a _END_ Productos de _TOTAL_ ",
+        infoEmpty: "Ningún mascota encontrado",
+        infoFiltered: "(filtrados desde _MAX_ Productos totales)",
+        search: "Buscar:",
+        loadingRecords: "Cargando...",
+        paginate: {
+          first: "<<",
+          last: ">>",
+          next: ">",
+          previous: "<",
+        },
+      },
+    });
+  });
+</script>
 
 <script>
 const idProductoEstado = (id) => {
@@ -250,7 +267,7 @@ const idProductoEstado = (id) => {
         text: "Esta acción cambiará el estado del producto.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sí, cambiar estado",
+        confirmButtonText: "Sí, activar",
         cancelButtonText: "Cancelar",
         reverseButtons: true
     }).then((result) => {
@@ -379,23 +396,11 @@ const idProductoEstado = (id) => {
     <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/lib/easing/easing.min.js"></script>
-    <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../assets/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="../assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="../assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Contact Javascript File -->
-    <script src="../assets/mail/jqBootstrapValidation.min.js"></script>
-    <script src="../assets/mail/contact.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-
+  <!-- Template Javascript -->
+  <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
 

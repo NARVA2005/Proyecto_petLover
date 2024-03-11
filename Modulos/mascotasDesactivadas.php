@@ -4,7 +4,7 @@ require_once './Clases/MySQL.php';
 
 $mysql = new MYSQL();
 $mysql->conectar();
-$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.mascota where estado='activo'");
+$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.mascota where estado='inactivo'");
 $mysql->desconectar();
 
 
@@ -42,6 +42,7 @@ $mysql->desconectar();
 
     <!-- Customized Bootstrap Stylesheet -->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    
     <link href="../assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
 
@@ -174,8 +175,8 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     <!-- Topbar End -->
 
 
-     <!-- Navbar Start -->
-     <div class="container-fluid p-0">
+      <!-- Navbar Start -->
+      <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
             <a href="" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Safety</span>First</h1>
@@ -222,6 +223,7 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     <!-- Navbar End -->
 
 
+
     <!-- Blog Start -->
     <div class="container  pt-5 ">
         <div class="d-flex flex-column text-center mb-5 pt-5 ">
@@ -247,7 +249,7 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
 <th>Id Cliente</th>
 <th>Estado</th>
 <th></th>
-<th></th>
+
 </thead>
 
 
@@ -277,11 +279,7 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
                                                 <td>
                                                     <?php echo $fila[6]; ?>
                                                 </td>
-                                                <td>
-                                                   
-                                                <button type="button" class="btn btn-primary edit-product" data-id="<?php echo $fila[0]; ?>" data-bs-toggle="modal" data-bs-target="#exampleModal">✎</button>
-                             
-                                                </td>
+                                              
                                                 <td>
                                                 <a onclick="idMascotaEstado('<?php echo $fila[0] ?>')" class="btn btn-primary" href="#">🗑</a>
                                             </tr>
@@ -300,14 +298,18 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
 
 
 
- </div>
+</div>
+
+
+
+
 <script>
   $(document).ready(function() {
     $("#datatable").DataTable({
       lengthMenu: [5, 10, 15, 50, 100, 250, 500],
       columnDefs: [
-        { orderable: false, targets: [7, 8] },
-            { searchable: false, targets: [7, 8] },
+        { orderable: false, targets: [6, 7] },
+            { searchable: false, targets: [6, 7] },
       ],
       pageLength: 5,
       destroy: true,
@@ -329,127 +331,16 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     });
   });
 </script>
+
+
 <div class="row d-flex justify-content-center">
-<div class="col-2">
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalregistro">
- Ingresar mascota
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar de mascota</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="editProductForm" action="./Controladores/llenarCamposEditarMascotas.php" method="POST">
-          <div class="mb-3">
-            <label for="idMascota" class="form-label">Id de la mascota</label>
-            <input type="number" class="form-control" id="idMascota" aria-describedby="emailHelp" name="idMascotas" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="tipo" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="nombre" >
-          </div>
-          <div class="mb-3">
-            <label for="tipo" class="form-label">Tipo</label>
-            <input type="text" class="form-control" id="type" aria-describedby="emailHelp" name="tipo" >
-          </div>
-          <div class="mb-3">
-            <label for="razas" class="form-label">Raza</label>
-            <input type="text" class="form-control" id="razas" aria-describedby="emailHelp" name="raza" >
-          </div>
-          <div class="mb-3">
-            <label for="nota" class="form-label">Nota</label>
-            <input type="text" class="form-control" id="nota" aria-describedby="emailHelp" name="nota" >
-          </div>
-          <div class="mb-3">
-            <label for="idClientes" class="form-label">Id cliente</label>
-            <input type="number" class="form-control" id="idCliente" aria-describedby="emailHelp" name="idCliente" readonly >
-          </div>
-    
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-      $(document).ready(function() {
-    $('.edit-product').click(function() {
-        var idcliente = $(this).data('id');
-        var nombre = $(this).closest('tr').find('td:eq(1)').text().trim(); // Obtiene el precio del producto de la cuarta celda de la fila
-        var idMascota = $(this).closest('tr').find('td:eq(0)').text().trim(); // Obtiene el nombre del producto de la segunda celda de la fila
-        var raza = $(this).closest('tr').find('td:eq(3)').text().trim();
-        var tipo = $(this).closest('tr').find('td:eq(2)').text().trim();  // Obtiene el stock del producto de la tercera celda de la fila
-        var nota = $(this).closest('tr').find('td:eq(4)').text().trim(); // Obtiene el precio del producto de la cuarta celda de la fila
-        
-        $('#idCliente').val(idcliente);
-        $('#type').val(tipo); 
-        $('#idMascota').val(idMascota); 
-        $('#nombre').val(nombre); 
-        $('#razas').val(raza); 
-        $('#nota').val(nota);  
-    });
-});
-
-
-    </script>
 
 
 
 
 
-<div class="col-2">
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalregistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar mascota</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <form id="" action="./Controladores/registroaMascotaFuncionario.php" method="POST">
-        
-          <div class="mb-3">
-            <label for="idProducto" class="form-label">Nombre de la mascota</label>
-            <input type="Text" class="form-control" id="idCliente" aria-describedby="emailHelp" name="nombres">
-          </div>
-          <div class="mb-3">
-            <label for="nombreProducto" class="form-label">Tipo</label>
-            <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="tipo" >
-          </div>
-          <div class="mb-3">
-            <label for="nombreProducto" class="form-label">Raza</label>
-            <input type="text" class="form-control" id="apellido" aria-describedby="emailHelp" name="raza" >
-          </div>
-          <div class="mb-3">
-            <label for="stockProducto" class="form-label">Nota</label>
-            <input type="text" class="form-control" id="correo" aria-describedby="emailHelp" name="nota" >
-          </div>
-          <div class="mb-3">
-            <label for="precioProducto" class="form-label">Id cliente</label>
-            <input type="text" class="form-control" id="idcliente" aria-describedby="emailHelp" name="id_cliente" >
-          </div>
-    
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
+
 <script>
         $(document).ready(function() {
     $('.elim-producto').click(function() {
@@ -489,10 +380,10 @@ const idMascotaEstado = (id) => {
     // Mostrar el cuadro de diálogo de confirmación
     swalWithBootstrapButtons.fire({
         title: "¿Estás seguro?",
-        text: "Esta acción cambiará el estado del producto.",
+        text: "Esta acción cambiará el estado de la mascota ",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "Sí, cambiar estado",
+        confirmButtonText: "Sí, activar mascota",
         cancelButtonText: "Cancelar",
         reverseButtons: true
     }).then((result) => {
@@ -511,7 +402,7 @@ const idMascotaEstado = (id) => {
                 if (data.success) {
                     swalWithBootstrapButtons.fire({
                         title: "Éxito",
-                        text: "El estado del producto se ha cambiado correctamente.",
+                        text: "El estado de la mascota se ha cambiado correctamente.",
                         icon: "success"
                     }).then(() => {
                         // Recargar la página
@@ -520,7 +411,7 @@ const idMascotaEstado = (id) => {
                 } else {
                     swalWithBootstrapButtons.fire({
                         title: "Error",
-                        text: "Hubo un error al cambiar el estado del producto.",
+                        text: "Hubo un error al cambiar el estado de la mascota.",
                         icon: "error"
                     });
                 }
@@ -612,6 +503,9 @@ const idMascotaEstado = (id) => {
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
+
+  <!-- JavaScript Libraries -->
+ 
   <!-- Template Javascript -->
   <script src="../node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
