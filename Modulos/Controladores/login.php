@@ -63,7 +63,7 @@ echo "Directorio actual: " . getcwd() . "<br>";
      
            
                 $_SESSION['cliente'] = $user; // Guardar el correo del usuario en la sesión
-                header("location: ../entradaRegistradosProductos.php");
+                header("location: ../inicioClientes.php");
     
             
             

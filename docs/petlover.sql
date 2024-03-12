@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-02-2024 a las 22:32:35
+-- Tiempo de generación: 12-03-2024 a las 02:58:53
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -54,19 +54,23 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`identificacion`, `nombre`, `apellido`, `correo`, `password`, `estado`) VALUES
-(1, 'popo', 'dfdfdfd', 'juan.perez@example.com', 'contrasena123', 'activo'),
+(1, 'popo', 'dfdfdfd', 'juan.perez@example.com', 'hola', 'inactivo'),
 (2, 'dsds', 'ddsdsd', 'juan.e@example.com', '12345', 'activo'),
 (34, 'fdfd', 'fdfdfd', 'juandfdfdfd.e@example.com', '34434343', 'activo'),
 (2121, 'xsxsx', 'hjhj', 'alex@gmai.com', 'jksdsds', 'activo'),
+(12121, 'qqwqwq', 'qwqwqwq', 'aleqwqwqwqwqwwqwqx@gmai.com', 'qwqwqwqwqq', 'activo'),
 (32323, 'w232', 'dssdsdsd', 'ddsddsds', 'dddsdsd', 'activo'),
 (111111, 'alejo', 'tobon', 'alejo.dsds@gmail.com', '12345', 'activo'),
+(232323, 'dsd', 'ddsds', 'alejdsdsdosdsdsd.dsds@gmail.com', '223232', 'activo'),
 (234567, 'asdfgh', 'asdfgh', 'asdfg', 'asdfg', 'activo'),
 (343434, 'FDFDFD', 'FDFDFDF', 'alzxzFGFGFxex@gmai.com', '434343', 'activo'),
 (433434, 'sdsdsds', 'dsdsds', 'dsdsdsds', '23232323', 'activo'),
 (434343, 'fdffdf', 'dfdff', 'fdfdfdf', 'fdfdfdf', 'activo'),
+(2121212, 'sds', 'sdsdd', 'alesdsdsdjo.dsds@gmail.com', '121212', 'activo'),
+(2121232, 'dsd', 'ddsds', 'alejosdsdsd.dsds@gmail.com', 'sdsds', 'activo'),
 (34343434, 'ffdsdfdfd', 'fdfdfd', 'aledfdfdfx@gmai.com', '334343', 'activo'),
 (111111111, 'luz', 'narvaez', 'luz@gmail.com', '12345', 'activo'),
-(1113859316, 'cxcxc', 'xcxcx', 'juan.excx@example.com', '12345', 'activo');
+(1113859316, 'popo', 'xcxcx', 'juan.excx@example.com', '12345', 'inactivo');
 
 -- --------------------------------------------------------
 
@@ -129,16 +133,23 @@ CREATE TABLE `mascota` (
   `tipo` varchar(20) NOT NULL,
   `raza` varchar(35) NOT NULL,
   `nota` varchar(500) NOT NULL,
-  `id_cliente` int(11) NOT NULL
+  `id_cliente` int(11) NOT NULL,
+  `estado` varchar(10) DEFAULT 'activo' CHECK (`estado` in ('activo','inactivo'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `mascota`
 --
 
-INSERT INTO `mascota` (`id`, `nombre`, `tipo`, `raza`, `nota`, `id_cliente`) VALUES
-(1, 'pepe', 'perro', 'chardoberman', 'perro', 1),
-(2, 'santiago', 'gato', 'no definido', 'gato', 1113859316);
+INSERT INTO `mascota` (`id`, `nombre`, `tipo`, `raza`, `nota`, `id_cliente`, `estado`) VALUES
+(1, 'd', '$tipoMascota', '$razaMascota', '$nota', 1, 'activo'),
+(2, 'santiago', 'gato', 'no definido', 'gato', 1113859316, 'activo'),
+(3, 'pepe', 'perro', 'chardoberman', 'perro', 1, 'activo'),
+(4, 'HHHJH', 'HJ', 'HJH', 'HJ', 1, 'activo'),
+(5, 'sdsdsGHL', 'JKJ;', ';K', 'JKJ;', 1, 'inactivo'),
+(6, 'jhon', 'HJ', 'no definido', 'HJ', 1, 'activo'),
+(7, 'hola', 'hola', 'hola', 'hola', 1, 'activo'),
+(8, 'hola', 'ghla', 'hola', 'ghla', 1, 'activo');
 
 -- --------------------------------------------------------
 
@@ -160,13 +171,17 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id`, `descripcion`, `stock`, `precio`, `imagenProducto`, `estado`) VALUES
-(3, 'fdfdf', 2, 2, '../assets/imgcepillo.jpg', 'inactivo'),
-(4, 'narva', 23, 23000, '../assets/imglogo.jpg', 'activo'),
-(5, 'sdsd', 334, 344, '../assets/imgcepillo.jpg', 'activo'),
-(6, 'wewe', 3, 23, '../assets/imgcepillo.jpg', 'activo'),
+(3, 'fdfdf', 2, 2, '../assets/imgcepillo.jpg', 'activo'),
+(4, 'narva', 23, 23000, '../assets/imglogo.jpg', 'inactivo'),
+(5, 's', 334, 444, '../assets/imgfondo.jpg', 'inactivo'),
+(6, 'wewe', 3, 32323, '../assets/imgfondo.jpg', 'inactivo'),
 (7, 'wew', 3443, 33232323, '../assets/imgcepillo.jpg', 'activo'),
 (8, 'sds', 3, 23, '../assets/imgcepillo.jpg', 'activo'),
-(9, 'sdd', 32, 2323, '../assets/imgcepillo.jpg', 'activo');
+(9, 'sdd', 32, 2323, '../assets/imgcepillo.jpg', 'activo'),
+(10, 'fdfdfsas', 3, 344, '../../assets/img/majo.jpg', 'activo'),
+(11, 'wqwqwqwqw', 3, 23, '../../assets/imgmajo.jpg', 'inactivo'),
+(12, 'sdsd', 334, 344, '../../assets/imgfondo.jpg', 'activo'),
+(13, 'sdsd', 334, 344, '../../assets/imgfondo.jpg', 'activo');
 
 -- --------------------------------------------------------
 
@@ -196,8 +211,22 @@ INSERT INTO `rol` (`id`, `nombre`) VALUES
 CREATE TABLE `servicio` (
   `id` int(11) NOT NULL,
   `descripcion` varchar(120) NOT NULL,
-  `precio` int(11) NOT NULL
+  `precio` int(11) NOT NULL,
+  `servicios_para_mascota` varchar(200) DEFAULT NULL,
+  `estado` enum('activo','inactivo') DEFAULT 'activo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `servicio`
+--
+
+INSERT INTO `servicio` (`id`, `descripcion`, `precio`, `servicios_para_mascota`, `estado`) VALUES
+(1, 'Baño y corte de pelo', 30, 'Perro', 'activo'),
+(2, 'Baño y corte de pelo', 25, 'Gato', 'activo'),
+(3, 'Vacunación anual', 50, 'Perro', 'activo'),
+(4, 'Vacunación anual', 45, 'Gato', 'activo'),
+(5, 'Cirugía de esterilización', 100, 'Perro', 'activo'),
+(6, 'Cirugía de esterilización', 90, 'Gato', 'activo');
 
 -- --------------------------------------------------------
 
@@ -332,13 +361,13 @@ ALTER TABLE `factura_producto`
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -350,7 +379,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `servicio`
 --
 ALTER TABLE `servicio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
