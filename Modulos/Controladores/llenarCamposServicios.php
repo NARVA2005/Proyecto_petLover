@@ -1,10 +1,10 @@
 <?php
-if (isset($_GET['id']) && isset($_GET['descripcion']) && isset($_GET['precio']) && isset($_GET['tipo']) ) {
+if (isset($_POST['id']) && isset($_POST['descripcion']) && isset($_POST['precio']) && isset($_POST['tipo']) ) {
     // Obtener los datos del formulario
-    $idServicio = $_GET['id'];
-    $descripcion = $_GET['descripcion'];
-    $precio = $_GET['precio'];
-    $tipo = $_GET['tipo'];
+    $idServicio = $_POST['id'];
+    $descripcion = $_POST['descripcion'];
+    $precio = $_POST['precio'];
+    $tipo = $_POST['tipo'];
  
 
     // Verificar si todos los campos del formulario están llenos
@@ -21,7 +21,7 @@ if (isset($_GET['id']) && isset($_GET['descripcion']) && isset($_GET['precio']) 
     $mysql = new MYSQL();
     $mysql->conectar();
 
-    $actualizarCliente = $mysql->efectuarConsulta("UPDATE petlover.servicio SET descripcion='$descripcion', precio='$precio', tipo='$tipo' WHERE id='$idServicio'");
+    $actualizarCliente = $mysql->efectuarConsulta("UPDATE petlover.servicio SET descripcion='$descripcion', precio='$precio', servicios_para_mascota='$tipo' WHERE id='$idServicio'");
 
     if ($actualizarCliente) {
         //de lo contrario no avanza del login

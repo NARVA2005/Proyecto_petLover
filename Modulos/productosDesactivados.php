@@ -116,7 +116,16 @@ $mysql->desconectar();
                 <li><a class="dropdown-item" href="mascotasDesactivadas.php">mascotas inactivos</a></li>
               </ul>
             </li>
-            
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+     Servicios
+              </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/agregarServicios.php">Historial de Servicios</a></li>
+                <li><a class="dropdown-item" href="../Modulos/ServiciosDesactivados.php">Servicios inactivos</a></li>
+              </ul>
+           
+            </li>
                  
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>

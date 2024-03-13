@@ -130,9 +130,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link " href="#" id="navbarDropdown" type="button" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
      Servicios
               </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/agregarServicios.php">Historial de Servicios</a></li>
+                <li><a class="dropdown-item" href="../Modulos/ServiciosDesactivados.php">Servicios inactivos</a></li>
+              </ul>
            
             </li>
             

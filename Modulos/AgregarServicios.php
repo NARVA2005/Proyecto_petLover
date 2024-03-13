@@ -130,12 +130,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link " href="#" id="navbarDropdown" type="button" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
      Servicios
               </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/agregarServicios.php">Historial de Servicios</a></li>
+                <li><a class="dropdown-item" href="../Modulos/ServiciosDesactivados.php">Servicios inactivos</a></li>
+              </ul>
            
             </li>
-            
           
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
@@ -329,11 +332,11 @@ $(document).ready(function() {
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Registrar servicio</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-<form action="./Controladores/registroProducto.php" method="post" enctype="multipart/form-data">
+<form action="./Controladores/agregarServicios.php" method="post" enctype="multipart/form-data">
 
      <div class="mb-3">
 
@@ -341,13 +344,8 @@ $(document).ready(function() {
   </div>
 
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Nombre del producto</label>
-    <input type="text" class="form-control" id="nombreProducto" aria-describedby="emailHelp" name="nombreProducto">
-   
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Stock</label>
-    <input type="number" class="form-control" id="stockProduct" aria-describedby="emailHelp" name="stockProduct">
+    <label for="exampleInputEmail1" class="form-label">Descripcion</label>
+    <input type="text" class="form-control" id="descripcion" aria-describedby="emailHelp" name="descripcion">
    
   </div>
   <div class="mb-3">
@@ -356,10 +354,11 @@ $(document).ready(function() {
    
   </div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Imagen</label>
-    <input type="file" class="form-control" id="urlImage" aria-describedby="emailHelp" name="urlImage">
+    <label for="exampleInputEmail1" class="form-label">Tipo de mascota</label>
+    <input type="text" class="form-control" id="tipo" aria-describedby="emailHelp" name="tipo">
    
   </div>
+ 
 
 
 
@@ -459,7 +458,7 @@ const idProductoEstado = (id) => {
     }).then((result) => {
         if (result.isConfirmed) {
             // Enviar la solicitud POST al servidor PHP para cambiar el estado del producto
-            fetch('./Controladores/DesactivarProducto.php', {
+            fetch('./Controladores/DesactivarServicio.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
