@@ -128,12 +128,12 @@ $mysql ->desconectar();
             </div>
     
             <div class="col-lg-7 contact-form__wrapper p-5 order-lg-1">
-                <form action="../Modulos/Controladores/agregarServicios.php" method="post" class="contact-form form-validate" novalidate="novalidate">
+                <form action="../Modulos/Controladores/InsertarAgenda.php" method="post" class="contact-form form-validate" novalidate="novalidate">
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <div class="form-group">
                                 <label class="required-field" for="firstName">Identificacion del dueño</label>
-                                <input type="text" class="form-control" id="nombreDueño" name="nombreDueño" >
+                                <input type="text" class="form-control" id="id_cliente" name="id_cliente" >
                             </div>
                         </div>
     
@@ -151,15 +151,11 @@ $mysql ->desconectar();
                             </div>
                         </div>
     
-                        <div class="col-sm-6 mb-3">
-                            <div class="form-group">
-                                <label for="phone">Numero de telefono</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="(021)-454-545">
-                            </div>
-                        </div>
+    
     
                         <div class="col-sm-12 mb-3">
                             <div class="form-group">
+                          
                                 <label class="required-field" for="message">Tipo se servicio</label>
                                 <br>
                                
@@ -178,7 +174,9 @@ $mysql ->desconectar();
                         </div>
     
                         <div class="col-sm-12 mb-3">
+                            
                             <button type="submit" name="submit" class="btn btn-primary">Agendar</button>
+                          
                         </div>
     
                     </div>
