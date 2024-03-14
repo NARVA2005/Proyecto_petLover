@@ -95,7 +95,9 @@ $mysql->desconectar();
                  
 
             <a href="ServiciosClientes.php" class="nav-item nav-link">Servicios</a>
-
+            <a class="nav-link " href="ComprasCliente.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+     Compras realizadas 
+              </a>
             </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
             </div>
