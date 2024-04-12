@@ -123,13 +123,20 @@
 
                 
                 if (mysqli_fetch_array($consulta)[0] == 0){
-                    echo "Ruta completa: " . $root  . $image;
+                    
+                    echo "Ruta completa: " . substr($root, 3, strlen($root))   . $image;
 
                 if (move_uploaded_file($temp, $root . $image)) {
                     //Cambiamos los permisos del archivo a 777 para poder modificarlo posteriormente
             
                     chmod($root  . $image, 0777);
-                    $rutaCompleta = $root . $image;
+
+                    $index = strpos($root, '..', strpos($root, '..') + 3); // Encuentra el segundo '..'
+                     
+                    $rutaCompleta = substr($root, $index) . $image;
+
+              
+                    $rutaCompleta =  substr($root, 3, strlen($root)). $image;
                     $mysql->conectar();
                     $mysql->efectuarConsulta("INSERT 
                     INTO petlover.producto VALUES('','$nameProduct',$stockProduct, $precio, '$rutaCompleta','activo')");
@@ -141,7 +148,8 @@
                         try {
                             $url = $_POST['urlImageOnline']; // URL de la imagen en línea
                             $filename = basename($url); // Obtener el nombre del archivo de la URL
-                            $save_path = $root . $filename; // Ruta de destino
+                    
+                            $save_path =  substr($root, 3, strlen($root)) . $filename; // Ruta de destino
                         
                             // Guardar la imagen desde la URL
                             $image_content = file_get_contents($url); // Descargar el contenido de la imagen desde la URL

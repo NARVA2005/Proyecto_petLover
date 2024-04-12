@@ -25,7 +25,7 @@ $mysql->desconectar();
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Flaticon Font -->
     <link href="../assets/lib/flaticon/font/flaticon.css" rel="stylesheet">
 
@@ -36,9 +36,10 @@ $mysql->desconectar();
     <!-- Customized Bootstrap Stylesheet -->
 
     <link href="css/style.css" rel="stylesheet">
-
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="../assets/css/style.css" rel="stylesheet">
-
+    <link href="../assets/css/estilo.css" rel="stylesheet">
+  <script src="../assets/js/app.js"></script>
 </head>
 
 <body>
@@ -74,9 +75,6 @@ $mysql->desconectar();
     <!-- Navbar Start -->
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
-            <a href="" class="navbar-brand d-block d-lg-none">
-                <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Safety</span>First</h1>
-            </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -86,15 +84,12 @@ $mysql->desconectar();
          
 
                         
-                    <a href="#" class="nav-item nav-link">Productos</a>
+                         
+                <a href="Inicio.php" class="nav-item nav-link">Productos</a>
                      
-                         
-                         
-                   
-
-                 
-
-            <a href="formularioServicios.php" class="nav-item nav-link">Servicios</a>
+                     <a href="servicios.php" class="nav-item nav-link">Hacer Cita</a>
+                          
+                    
 
             </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
@@ -105,56 +100,41 @@ $mysql->desconectar();
 
 
     <!-- Blog Start -->
-    <div class="container pt-5">
-     <div class="text-center mb-5 pt-5">
-        <h4 class="text-secondary mb-3">Blog de productos</h4>
-        <h1 class="display-4 m-0"><span class="text-primary">Compras</span> para tu mascota</h1>
-     </div>
-     <div class="ag-format-container">
-        <div class="ag-courses_box">
-     <?php
-                                         
-                                         while ($fila = mysqli_fetch_array($consulta)) {
-                                        
-                                         ?>
-   
-      <div class="ag-courses_item">
-      <a href="#" class="ag-courses-item_link">
-        <div class="ag-courses-item_bg"></div>
+    <section class="contenedor">
+        <!-- Contenedor de elementos -->
+        <div class="contenedor-items">
+            <?php while ($fila = mysqli_fetch_array($consulta)) { ?>
+                <div class="item">
+                    <span class="titulo-item"><?php echo $fila['descripcion']; ?></span>
+                    <img src="<?php echo $fila['imagenProducto']; ?>" alt="" class="img-item">
+                    <span class="precio-item">$<?php echo $fila['precio']; ?></span>
+                    <span class="" hidden id="stock"><?php echo $fila['stock']; ?></span>
+                    <button class="boton-item">Agregar al Carrito</button>
+                </div>
+            <?php } ?>
+        </div>
 
-        <div class="ag-courses-item_title">
-         <img src=" <?php echo $fila[4]; ?>" alt="">
-        </div>
-        <div class="ag-courses-item_date-box">
-  Descripcion
-          <span class="ag-courses-item_date">
-          <?php echo $fila[1]; ?>
-          </span>
-        </div>
-        <div class="ag-courses-item_date-box">
- Precio por unidad
-          <span class="ag-courses-item_date">
-          <?php echo $fila[3]; ?>
-          </span>
-        </div>
-        <div class="ag-courses-item_date-box">
-       Cantidad disponible
-          <span class="ag-courses-item_date">
-          <?php echo $fila[2]; ?>
-          </span>
-        </div>
-        <div class="ag-courses-item_date-box card-footer text-center">
-        <a href="Registrarse.php" class="btn btn-primary btn-sm" style="border-radius: 20px; padding: 10px 20px;">Comprar</a>
+        <!-- Carrito de Compras -->
+        <div class="carrito" id="carrito">
+            <div class="header-carrito">
+                <h2>Tu Carrito</h2>
+            </div>
 
-</div>
-      </a>
-      </div>
-      <?php
-                                        }
-                                        ?>
- </div>
-    </div>
-</div>
+            <div class="carrito-items">
+                <!-- Aquí irán los elementos del carrito si los necesitas -->
+            </div>
+            <div class="carrito-total">
+                <!-- Aquí irá el total del carrito si lo necesitas -->
+                <div class="fila">
+                    <strong>Tu Total</strong>
+                    <span class="carrito-precio-total">
+                        $120.000,00
+                    </span>
+                </div>
+                <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
+            </div>
+        </div>
+    </section>
   
 
 
@@ -337,7 +317,7 @@ $mysql->desconectar();
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-                        <h5 class="text-primary mb-4">Punto de contacto/h5>
+                        <h5 class="text-primary mb-4">Punto de contacto</h5>
                         <p><i class="fa fa-map-marker-alt mr-2"></i>carrera 7 13-41, Colombia, Cartago Valle</p>
                         <p><i class="fa fa-phone-alt mr-2"></i>3007269738</p>
                         <p><i class="fa fa-envelope mr-2"></i>petlover@gmail.com</p>
@@ -393,6 +373,28 @@ $mysql->desconectar();
             </div>
         </div>
     </div>
+
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+  
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+     
+        <button type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- Footer End -->
 
 
@@ -408,7 +410,7 @@ $mysql->desconectar();
     <script src="../assets/lib/tempusdominus/js/moment.min.js"></script>
     <script src="../assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="../assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
+<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Contact Javascript File -->
     <script src="../assets/mail/jqBootstrapValidation.min.js"></script>
     <script src="../assets/mail/contact.js"></script>

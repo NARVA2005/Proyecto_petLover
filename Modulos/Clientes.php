@@ -107,8 +107,8 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     <!-- Topbar End -->
 
 
-     <!-- Navbar Start -->
-     <div class="container-fluid p-0">
+         <!-- Navbar Start -->
+    <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
             <a href="" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Safety</span>First</h1>
@@ -145,15 +145,35 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
                 <li><a class="dropdown-item" href="mascotasDesactivadas.php">mascotas inactivos</a></li>
               </ul>
             </li>
-            
-                 
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+     Servicios
+              </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/agregarServicios.php">Historial de Servicios</a></li>
+                <li><a class="dropdown-item" href="../Modulos/ServiciosDesactivados.php">Servicios inactivos</a></li>
+              </ul>
+           
+            </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+     Estadisticas
+              </a>
+              <ul class="dropdown-menu  ">
+             
+                <li><a class="dropdown-item" href="../Modulos/estadisticaIngresos.php">Estadisticas de desempeño de ingreso</a></li>
+                <li><a class="dropdown-item" href="../Modulos/estadisticaServicios.php">Estadisticas de servicios mas pópulares</a></li>
+                <li><a class="dropdown-item" href="../Modulos/estadisticaProductos.php">Estadisticas de productos mas vendidos</a></li>
+          
+              </ul>
+            </li>
+          
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
             </div>
         </nav>
     </div>
     <!-- Navbar End -->
-
     <!-- Blog Start -->
     <div class="container  pt-5 ">
         <div class="d-flex flex-column text-center mb-5 pt-5 ">

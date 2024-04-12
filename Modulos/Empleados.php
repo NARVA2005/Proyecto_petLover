@@ -130,12 +130,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link " href="#" id="navbarDropdown" type="button" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
      Servicios
               </a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="../Modulos/agregarServicios.php">Historial de Servicios</a></li>
+                <li><a class="dropdown-item" href="../Modulos/ServiciosDesactivados.php">Servicios inactivos</a></li>
+              </ul>
            
             </li>
-            
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+     Estadisticas
+              </a>
+              <ul class="dropdown-menu  ">
+             
+                <li><a class="dropdown-item" href="../Modulos/estadisticaIngresos.php">Estadisticas de desempeño de ingreso</a></li>
+                <li><a class="dropdown-item" href="../Modulos/estadisticaServicios.php">Estadisticas de servicios mas pópulares</a></li>
+                <li><a class="dropdown-item" href="../Modulos/estadisticaProductos.php">Estadisticas de productos mas vendidos</a></li>
+          
+              </ul>
+            </li>
           
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
