@@ -92,6 +92,7 @@ $mysql ->desconectar();
             </button>
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
+<<<<<<< HEAD
                     
                  
                       
@@ -103,6 +104,22 @@ $mysql ->desconectar();
             
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar Sesión</a>
+=======
+                    <a href="../index.html" class="nav-item nav-link">Inicio</a>
+                 
+                  
+                    <a href="#" class="nav-item nav-link">Metodos de pago</a>
+                
+                        
+                    <a href="#" class="nav-item nav-link">Productos</a>
+                     
+                         
+                    <a href="#" class="nav-item nav-link">Servicios</a>
+                   
+            
+                </div>
+                <a href="" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Comprar</a>
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
             </div>
         </nav>
     </div>
@@ -156,7 +173,11 @@ $mysql ->desconectar();
                                 <label class="required-field" for="message">Tipo se servicio</label>
                                 <br>
                                
+<<<<<<< HEAD
                                 <select class="form-select" aria-label="Default select example" name="servicio">
+=======
+                                <select class="form-select" aria-label="Default select example">
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
                                 <option selected>Selecciona un servicio</option>
                                 <?php while($fila = mysqli_fetch_array($consulta)) {?>
                              

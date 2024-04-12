@@ -3,10 +3,9 @@
 require_once './Clases/MySQL.php';
 $mysql = new MYSQL();
 $mysql->conectar();
-$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.Producto where estado='activo'");
+$consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.servicio");
 $mysql->desconectar();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,19 +17,16 @@ $mysql->desconectar();
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet"> 
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-=======
 
->>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
     <!-- Flaticon Font -->
+    
     <link href="../assets/lib/flaticon/font/flaticon.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
@@ -38,18 +34,7 @@ $mysql->desconectar();
     <link href="../assets/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-
-    <link href="css/style.css" rel="stylesheet">
-<<<<<<< HEAD
-<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="../assets/css/style.css" rel="stylesheet">
-    <link href="../assets/css/estilo.css" rel="stylesheet">
-  <script src="../assets/js/app.js"></script>
-=======
-
-    <link href="../assets/css/style.css" rel="stylesheet">
-
->>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
 </head>
 
 <body>
@@ -81,45 +66,30 @@ $mysql->desconectar();
     </div>
     <!-- Topbar End -->
 
-
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0">
+      <!-- Navbar Start -->
+      <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
-<<<<<<< HEAD
-=======
             <a href="" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Safety</span>First</h1>
             </a>
->>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                 <div class="navbar-nav mr-auto py-0">
-
-         
-
+             
+                 
+                  
+                
+                
                         
-<<<<<<< HEAD
-                         
-                <a href="Inicio.php" class="nav-item nav-link">Productos</a>
+                    <a href="Inicio.php" class="nav-item nav-link">Productos</a>
                      
-                     <a href="servicios.php" class="nav-item nav-link">Hacer Cita</a>
-                          
-                    
-=======
-                    <a href="#" class="nav-item nav-link">Productos</a>
-                     
-                         
+                    <a href="#" class="nav-item nav-link">Servicios</a>
                          
                    
-
-                 
-
-            <a href="formularioServicios.php" class="nav-item nav-link">Servicios</a>
->>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
-
-            </div>
+            
+                    </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
             </div>
         </nav>
@@ -127,50 +97,14 @@ $mysql->desconectar();
     <!-- Navbar End -->
 
 
-    <!-- Blog Start -->
-<<<<<<< HEAD
-    <section class="contenedor">
-        <!-- Contenedor de elementos -->
-        <div class="contenedor-items">
-            <?php while ($fila = mysqli_fetch_array($consulta)) { ?>
-                <div class="item">
-                    <span class="titulo-item"><?php echo $fila['descripcion']; ?></span>
-                    <img src="<?php echo $fila['imagenProducto']; ?>" alt="" class="img-item">
-                    <span class="precio-item">$<?php echo $fila['precio']; ?></span>
-                    <span class="" hidden id="stock"><?php echo $fila['stock']; ?></span>
-                    <button class="boton-item">Agregar al Carrito</button>
-                </div>
-            <?php } ?>
-        </div>
-
-        <!-- Carrito de Compras -->
-        <div class="carrito" id="carrito">
-            <div class="header-carrito">
-                <h2>Tu Carrito</h2>
+    <!-- Services Start -->
+    <div class="container-fluid bg-light pt-5">
+        <div class="container py-5">
+            <div class="d-flex flex-column text-center mb-5">
+                <h4 class="text-secondary mb-3">Nuestros servicios</h4>
+                <h1 class="display-4 m-0"><span class="text-primary">Premium</span> Pet Services</h1>
             </div>
-
-            <div class="carrito-items">
-                <!-- Aquí irán los elementos del carrito si los necesitas -->
-            </div>
-            <div class="carrito-total">
-                <!-- Aquí irá el total del carrito si lo necesitas -->
-                <div class="fila">
-                    <strong>Tu Total</strong>
-                    <span class="carrito-precio-total">
-                        $120.000,00
-                    </span>
-                </div>
-                <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
-            </div>
-        </div>
-    </section>
-=======
-    <div class="container pt-5">
-     <div class="text-center mb-5 pt-5">
-        <h4 class="text-secondary mb-3">Blog de productos</h4>
-        <h1 class="display-4 m-0"><span class="text-primary">Compras</span> para tu mascota</h1>
-     </div>
-     <div class="ag-format-container">
+            <div class="ag-format-container">
         <div class="ag-courses_box">
      <?php
                                          
@@ -182,9 +116,7 @@ $mysql->desconectar();
       <a href="#" class="ag-courses-item_link">
         <div class="ag-courses-item_bg"></div>
 
-        <div class="ag-courses-item_title">
-         <img src=" <?php echo $fila[4]; ?>" alt="">
-        </div>
+       
         <div class="ag-courses-item_date-box">
   Descripcion
           <span class="ag-courses-item_date">
@@ -192,20 +124,19 @@ $mysql->desconectar();
           </span>
         </div>
         <div class="ag-courses-item_date-box">
- Precio por unidad
-          <span class="ag-courses-item_date">
-          <?php echo $fila[3]; ?>
-          </span>
-        </div>
-        <div class="ag-courses-item_date-box">
-       Cantidad disponible
+ Precio por servicio
           <span class="ag-courses-item_date">
           <?php echo $fila[2]; ?>
           </span>
         </div>
+        <div class="ag-courses-item_date-box">
+     Servicio para la mascota
+          <span class="ag-courses-item_date">
+          <?php echo $fila[3]; ?>
+          </span>
+        </div>
         <div class="ag-courses-item_date-box card-footer text-center">
-        <a href="Registrarse.php" class="btn btn-primary btn-sm" style="border-radius: 20px; padding: 10px 20px;">Comprar</a>
-
+        <a href="Registrarse.php" class="btn btn-primary btn-sm" style="border-radius: 20px; padding: 10px 20px;">Tomar</a>
 </div>
       </a>
       </div>
@@ -214,32 +145,9 @@ $mysql->desconectar();
                                         ?>
  </div>
     </div>
-</div>
->>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
-  
 
-
-            <div class="col-lg-12">
-                <nav aria-label="Page navigation">
-                  <ul class="pagination justify-content-center mb-4">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo; Previous</span>
-                      </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">Next &raquo;</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-            </div>
-        </div>
-    <!-- Blog End -->
+    </div>
+    <!-- Services End -->
     <style>
   .ag-format-container {
   width: 1000px;
@@ -387,9 +295,62 @@ $mysql->desconectar();
 }
 </style>
 
+    <!-- Testimonial Start -->
+    <div class="container-fluid p-0 py-5">
+        <div class="container p-0 pt-5">
+            <div class="d-flex flex-column text-center mb-5">
+                <h4 class="text-secondary mb-3">Testimonial</h4>
+                <h1 class="display-4 m-0">Our Client <span class="text-primary">Says</span></h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel">
+                <div class="bg-light mx-3 p-4">
+                    <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
+                        <img class="img-fluid" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
+                        <div class="ml-3">
+                            <h5>Client Name</h5>
+                            <i>Profession</i>
+                        </div>
+                    </div>
+                    <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
+                </div>
+                <div class="bg-light mx-3 p-4">
+                    <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
+                        <img class="img-fluid" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
+                        <div class="ml-3">
+                            <h5>Client Name</h5>
+                            <i>Profession</i>
+                        </div>
+                    </div>
+                    <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
+                </div>
+                <div class="bg-light mx-3 p-4">
+                    <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
+                        <img class="img-fluid" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
+                        <div class="ml-3">
+                            <h5>Client Name</h5>
+                            <i>Profession</i>
+                        </div>
+                    </div>
+                    <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
+                </div>
+                <div class="bg-light mx-3 p-4">
+                    <div class="d-flex align-items-end mb-3 mt-n4 ml-n4">
+                        <img class="img-fluid" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
+                        <div class="ml-3">
+                            <h5>Client Name</h5>
+                            <i>Profession</i>
+                        </div>
+                    </div>
+                    <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
 
-      <!-- Footer Start -->
-      <div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
             <div class="col-lg-4 col-md-12 mb-5">
                 <h1 class="mb-3 display-5 text-capitalize text-white"><span class="text-primary">Pet</span>Lover</h1>
@@ -398,11 +359,7 @@ $mysql->desconectar();
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-<<<<<<< HEAD
-                        <h5 class="text-primary mb-4">Punto de contacto</h5>
-=======
                         <h5 class="text-primary mb-4">Punto de contacto/h5>
->>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
                         <p><i class="fa fa-map-marker-alt mr-2"></i>carrera 7 13-41, Colombia, Cartago Valle</p>
                         <p><i class="fa fa-phone-alt mr-2"></i>3007269738</p>
                         <p><i class="fa fa-envelope mr-2"></i>petlover@gmail.com</p>
@@ -458,32 +415,8 @@ $mysql->desconectar();
             </div>
         </div>
     </div>
-<<<<<<< HEAD
-
-    <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-  
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-     
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </div>
-</div>
-=======
->>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
     <!-- Footer End -->
+
 
 
     <!-- Back to Top -->
@@ -498,17 +431,12 @@ $mysql->desconectar();
     <script src="../assets/lib/tempusdominus/js/moment.min.js"></script>
     <script src="../assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="../assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-<<<<<<< HEAD
-<script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-=======
 
->>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
     <!-- Contact Javascript File -->
     <script src="../assets/mail/jqBootstrapValidation.min.js"></script>
     <script src="../assets/mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="../assets/ajs/cantidadProducto.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
 

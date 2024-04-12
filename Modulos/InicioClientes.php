@@ -5,7 +5,10 @@ $mysql = new MYSQL();
 $mysql->conectar();
 $consulta = $mysql->efectuarConsulta("SELECT * FROM petlover.Producto where estado='activo'");
 $mysql->desconectar();
+<<<<<<< HEAD
 
+=======
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
 ?>
 
 <!DOCTYPE html>
@@ -26,12 +29,18 @@ $mysql->desconectar();
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<<<<<<< HEAD
     
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Flaticon Font -->
     <link href="../assets/lib/flaticon/font/flaticon.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+=======
+
+    <!-- Flaticon Font -->
+    <link href="../assets/lib/flaticon/font/flaticon.css" rel="stylesheet">
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
 
     <!-- Libraries Stylesheet -->
     <link href="../assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -40,10 +49,16 @@ $mysql->desconectar();
     <!-- Customized Bootstrap Stylesheet -->
 
     <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
 <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/estilo.css" rel="stylesheet">
   
+=======
+
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
 </head>
 
 <body>
@@ -91,6 +106,7 @@ $mysql->desconectar();
          
 
                         
+<<<<<<< HEAD
                          
                 <a href="Inicio.php" class="nav-item nav-link">Productos</a>
                      
@@ -98,12 +114,27 @@ $mysql->desconectar();
                           
                      <a href="Servicios.php" class="nav-item nav-link">Citas</a>
 
+=======
+                    <a href="inicioClientes.php" class="nav-item nav-link">Productos</a>
+                     
+                         
+                         
+                   
+
+                 
+
+            <a href="ServiciosClientes.php" class="nav-item nav-link">Servicios</a>
+            <a class="nav-link " href="ComprasCliente.php" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+     Compras realizadas 
+              </a>
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
             </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
             </div>
         </nav>
     </div>
     <!-- Navbar End -->
+<<<<<<< HEAD
 
 
     <!-- Blog Start -->
@@ -142,6 +173,65 @@ $mysql->desconectar();
             </div>
         </div>
     </section>
+=======
+<div>
+    <button>
+    <ion-icon name="cart-outline">carrito</ion-icon>
+    </button>
+</div>
+
+    <!-- Blog Start -->
+    <div class="container pt-5">
+     <div class="text-center mb-5 pt-5">
+        <h4 class="text-secondary mb-3">Blog de productos</h4>
+        <h1 class="display-4 m-0"><span class="text-primary">Compras</span> para tu mascota</h1>
+     </div>
+     <div class="ag-format-container">
+        <div class="ag-courses_box">
+     <?php
+                                         
+                                         while ($fila = mysqli_fetch_array($consulta)) {
+                                        
+                                         ?>
+   
+      <div class="ag-courses_item">
+      <a href="#" class="ag-courses-item_link">
+        <div class="ag-courses-item_bg"></div>
+
+        <div class="ag-courses-item_title">
+         <img src=" <?php echo $fila[4]; ?>" alt="">
+        </div>
+        <div class="ag-courses-item_date-box">
+  Descripcion
+          <span class="ag-courses-item_date">
+          <?php echo $fila[1]; ?>
+          </span>
+        </div>
+        <div class="ag-courses-item_date-box">
+ Precio por unidad
+          <span class="ag-courses-item_date">
+          <?php echo $fila[3]; ?>
+          </span>
+        </div>
+        <div class="ag-courses-item_date-box">
+       Cantidad disponible
+          <span class="ag-courses-item_date">
+          <?php echo $fila[2]; ?>
+          </span>
+        </div>
+        <div class="ag-courses-item_date-box  text-center">
+        <a href="" class="btn btn-primary btn-sm" style="border-radius: 20px; padding: 10px 20px;">Comprar</a>
+
+</div>
+      </a>
+      </div>
+      <?php
+                                        }
+                                        ?>
+ </div>
+    </div>
+</div>
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
   
 
 
@@ -380,6 +470,7 @@ $mysql->desconectar();
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <!-- Button trigger modal -->
    
@@ -407,6 +498,8 @@ $mysql->desconectar();
 
 
 
+=======
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
     <!-- Footer End -->
 
 
@@ -416,6 +509,7 @@ $mysql->desconectar();
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<<<<<<< HEAD
     <script>
     function guardarFactura() {
         // Recopilar información de la factura y del cliente
@@ -449,17 +543,27 @@ $mysql->desconectar();
         });
     }
 </script>
+=======
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/lib/easing/easing.min.js"></script>
     <script src="../assets/lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="../assets/lib/tempusdominus/js/moment.min.js"></script>
     <script src="../assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="../assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<<<<<<< HEAD
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Contact Javascript File -->
     <script src="../assets/mail/jqBootstrapValidation.min.js"></script>
     <script src="../assets/mail/contact.js"></script>
     <script src="../assets/js/app.js"></script>
+=======
+
+    <!-- Contact Javascript File -->
+    <script src="../assets/mail/jqBootstrapValidation.min.js"></script>
+    <script src="../assets/mail/contact.js"></script>
+
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
     <!-- Template Javascript -->
     <script src="../assets/ajs/cantidadProducto.js"></script>
     <script src="../assets/js/main.js"></script>

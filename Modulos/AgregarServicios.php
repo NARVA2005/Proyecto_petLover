@@ -90,6 +90,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <!-- Topbar End -->
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
     <!-- Navbar Start -->
     <div class="container-fluid p-0">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
@@ -138,6 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </ul>
            
             </li>
+<<<<<<< HEAD
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
      Estadisticas
@@ -150,6 +155,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           
               </ul>
             </li>
+=======
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
           
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>

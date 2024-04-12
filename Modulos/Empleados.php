@@ -139,6 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </ul>
            
             </li>
+<<<<<<< HEAD
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
      Estadisticas
@@ -151,6 +152,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           
               </ul>
             </li>
+=======
+            
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
           
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>

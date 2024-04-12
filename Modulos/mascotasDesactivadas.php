@@ -175,8 +175,13 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
     <!-- Topbar End -->
 
 
+<<<<<<< HEAD
        <!-- Navbar Start -->
        <div class="container-fluid p-0">
+=======
+      <!-- Navbar Start -->
+      <div class="container-fluid p-0">
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
             <a href="" class="navbar-brand d-block d-lg-none">
                 <h1 class="m-0 display-5 text-capitalize font-italic text-white"><span class="text-primary">Safety</span>First</h1>
@@ -213,6 +218,10 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
                 <li><a class="dropdown-item" href="mascotasDesactivadas.php">mascotas inactivos</a></li>
               </ul>
             </li>
+<<<<<<< HEAD
+=======
+            
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
      Servicios
@@ -223,6 +232,7 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
               </ul>
            
             </li>
+<<<<<<< HEAD
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
      Estadisticas
@@ -236,6 +246,8 @@ if (isset($_SESSION['mensaje']) && !empty($_SESSION['mensaje'])) {
               </ul>
             </li>
           
+=======
+>>>>>>> b42db436667b475f58c876ad2b3f405607bdc546
                 </div>
                 <a href="../index.html" class="btn btn-lg btn-primary px-3 d-none d-lg-block">Cerrar sesion</a>
             </div>
